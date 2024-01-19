@@ -2,7 +2,7 @@ name: run pipeline
 
 on:
   schedule:
-    - cron: '0 4 * * *' # At 00:00 everyday
+    - cron: '40 5 * * *' # At 05:40 everyday
 
 jobs:
   build:
