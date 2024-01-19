@@ -96,12 +96,12 @@ for i, button in enumerate(buttons):
         buzz_placeholder = content_cols[0].empty()
 
         # show the tweets dataframe
-        content_cols[1].markdown(f'<h6>Showing the first 10/{num_tweets} tweets:</h6>', unsafe_allow_html=True)
+        content_cols[1].markdown(f'<h6>Showing 10/{num_tweets} tweets:</h6>', unsafe_allow_html=True)
         content_cols[1].dataframe(topic_df[['username', 'text']].reset_index(drop=True).iloc[:10,:])
 
         # show the predicted themes
         themes = topic_df['theme'].tolist()
-        content_cols[2].markdown(f'<h6>Themes for the first 10/{num_tweets} tweets:</h6>', unsafe_allow_html=True)
+        content_cols[2].markdown(f'<h6>Respective 10/{num_tweets} themes:</h6>', unsafe_allow_html=True)
         content_cols[2].write(themes[:10])
 
         loading = content_cols[0].markdown(f'<div style="color: #f1f1f1; text-align: center; padding-top: 10rem;"><h5 style="color: #0e47b6;">Finding...</h5></div>', unsafe_allow_html=True)
