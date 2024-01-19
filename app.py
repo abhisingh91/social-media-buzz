@@ -56,7 +56,7 @@ st.markdown("<h2>GenAI App: Find what's buzzing on X(twitter)</h2>", unsafe_allo
 st.markdown('<h5 style="color: #f5386e">Choose a topic:</h5>', unsafe_allow_html=True)
 
 # Calculate the number of rows needed
-n_topics_row = 12
+n_topics_row = 7
 num_rows = len(topics) // n_topics_row + (len(topics) % n_topics_row > 0)
 
 buttons = []
@@ -66,13 +66,13 @@ for i in range(num_rows):
     cols = st.columns(n_topics_row)
     
     for col, topic in zip(cols, row_topics):
-        buttons.append(col.button(f"#{topic}"))
+        buttons.append(col.button(f"#{topic}", use_container_width=True))
 
 content_cols = st.columns([1, 1, 0.85])
 
 # show the info related to tweets
 upto_date = (datetime.utcnow() - timedelta(days=1)).strftime('%Y-%m-%d')
-info_tweet = st.markdown(f'<div style="text-align: center; padding-top: 8rem"><h5>Choose a topic to discover yesterday&apos;s buzz <br><span style="color: #1be3a7">For date: <i>{upto_date}</i></span></h5></div>', unsafe_allow_html=True)
+info_tweet = st.markdown(f'<div style="text-align: center; padding-top: 8rem"><h5>Choose a topic to know yesterday&apos;s buzz <br><span style="color: #1be3a7">For date: <i>{upto_date}</i></span></h5></div>', unsafe_allow_html=True)
 
 buzz_subheading = None
 # Handle button click
