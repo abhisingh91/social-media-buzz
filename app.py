@@ -1,6 +1,3 @@
-from dotenv import load_dotenv
-load_dotenv()           # load all the environment variables
-
 import json
 import os
 import pandas as pd
@@ -10,8 +7,15 @@ import google.generativeai as genai
 from datetime import datetime, timedelta
 
 
+# setup the web page
+st.set_page_config(page_title="What's buzzing", layout='wide')
+
 # configure the API key
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))    # google gemini
+@st.cache_resource
+def configure_genai():
+    genai.configure(api_key=st.secrets["gemini_api_key"])    # google gemini
+
+configure_genai()
 
 def get_gemini_response(prompt, user_input):
     """
@@ -44,9 +48,6 @@ with open('topics.json', 'r') as file:
     topics = file.read()
 
 topics = json.loads(topics)
-
-# setup the web page
-st.set_page_config(page_title="What's buzzing", layout='wide')
 
 st.write('<style>div.block-container{padding-top:2rem;}</style>', unsafe_allow_html=True)
 
