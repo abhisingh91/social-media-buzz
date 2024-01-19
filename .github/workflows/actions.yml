@@ -1,8 +1,8 @@
-name: run run_pipeline.py
+name: run pipeline
 
 on:
   schedule:
-    - cron: '0 0 * * *' # At 00:00 everyday
+    - cron: '0 4 * * *' # At 00:00 everyday
 
 jobs:
   build:
