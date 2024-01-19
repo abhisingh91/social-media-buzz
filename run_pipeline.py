@@ -24,7 +24,7 @@ def main():
         scraper = pickle.load(file)
 
     # scrape the tweets for each topic
-    tweet_scraper = TweetScraper(scraper, num_tweets=500, until=1)
+    tweet_scraper = TweetScraper(scraper, num_tweets=500)
     tweet_scraper.scrape()
     step_complete()
     

@@ -7,7 +7,7 @@ import random
 
 
 class TweetScraper:
-    def __init__(self, scraper, num_tweets, since=30, until=1):
+    def __init__(self, scraper, num_tweets, since=30, until=0):
         """
         initialize the required scraper object and arguments
         """
