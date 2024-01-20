@@ -12,34 +12,37 @@ class Text:
     END = '\033[0m'
     BOLD = '\033[1m'
 
+def step(step_num, desc):
+    print(f"{Text.BOLD}{Text.MAGENTA}Step {step_num}: {Text.BLUE}{desc}{Text.END}")
+
 def step_complete():
     print(f"{Text.BOLD}{Text.GREEN}Completed!{Text.END}{Text.END}")
 
 def main():
     # Step 1: Get the tweets
-    print(f"{Text.BOLD}{Text.MAGENTA}Step 1: {Text.BLUE}Loading tweets for all the topics{Text.END}")
+    step(1, "Loading tweets for all the topics")
 
     # Load the instance from the file
     with open('scraper_instances/saved_instance.pkl', 'rb') as file:
         scraper = pickle.load(file)
 
     # scrape the tweets for each topic
-    tweet_scraper = TweetScraper(scraper, num_tweets=300)
+    tweet_scraper = TweetScraper(scraper, num_tweets=200)
     tweet_scraper.scrape()
     step_complete()
     
     # Step 2: transformation
-    print(f"{Text.BOLD}{Text.MAGENTA}Step 2: {Text.BLUE}Started data transformation{Text.END}")
+    step(2, "Started data transformation")
     data_transform()
     step_complete()
 
     # Step 3: update theme column in data
-    print(f"{Text.BOLD}{Text.MAGENTA}Step 3: {Text.BLUE}Predicting and adding themes{Text.END}")
+    step(3, "Predicting and adding themes")
     predict_and_update_theme()
     step_complete()
 
-    # Step 2: clean data
-    print(f"{Text.BOLD}{Text.MAGENTA}Step 4: {Text.BLUE}Started data cleaning{Text.END}")
+    # Step 4: clean data
+    step(4, "Started data cleaning")
     data_clean()
     step_complete()
 
