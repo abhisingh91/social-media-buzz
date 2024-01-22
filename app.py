@@ -105,7 +105,12 @@ for i, button in enumerate(buttons):
         content_cols[2].write(themes[:10])
 
         loading = content_cols[0].markdown(f'<div style="color: #f1f1f1; text-align: center; padding-top: 10rem;"><h5 style="color: #0e47b6;">Finding...</h5></div>', unsafe_allow_html=True)
-        response = get_gemini_response(get_conclusion_prompt(topics[i]), str(themes))
+        while True:
+            try:
+                response = get_gemini_response(get_conclusion_prompt(topics[i]), str(themes))
+                if response: break
+            except:
+                continue
         loading.empty()
 
         buzz_placeholder.write(f"{response}<br><br><span style='color: darkgray'>Note: <i>LLM responses may vary a bit</i></span>", unsafe_allow_html=True)

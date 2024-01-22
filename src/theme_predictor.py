@@ -22,7 +22,10 @@ def get_gemini_response(prompt, user_input):
     """
     model = genai.GenerativeModel('gemini-pro')
     response = model.generate_content([prompt[0], user_input])
-    return response.candidates[0].content.parts[0].text
+    try:
+        return response.candidates[0].content.parts[0].text
+    except:
+        return response.text
 
 def get_chatgpt_response(prompt, tweet_texts):
     messages = [
@@ -86,8 +89,12 @@ def predict_and_update_theme():
         # use gemini to predict the theme of each tweet
         topic_res = []
         for i, txt_batch in enumerate(tweet_texts):
+            print(f"Chunk: {i+1}, Tweets: {len(txt_batch)}")
             while True:
-                response = get_gemini_response(get_main_prompt(topic), str(txt_batch))
+                try:
+                    response = get_gemini_response(get_main_prompt(topic), str(txt_batch))
+                except:
+                    continue
                 response = response[1:-1].split(', ')
                 if len(response) == len(txt_batch): break
             [topic_res.append(r[1:-1]) for r in response]
