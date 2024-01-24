@@ -36,9 +36,9 @@ def get_conclusion_prompt(topic):
         The output should be in the format:
         Number. [theme in bold text]: Its specific verbose info 
         Note:
-        - Keep each theme concise and verbose at the same time, and strictly within the 10-word limit.
-        - It doesn't need to be exactly the element from the list, but it should be highly correlated.
-        - It should not be the superset topic only itself e.g {topic} Trends or {topic}, and must be very specific to that topic.
+        - Keep each theme concise and verbose at the same time without exceeding 10-word limit.
+        - It doesn't need to be exactly any element from the list, but it should be highly correlated.
+        - It should not be the superset topic only, e.g {topic} Trends or {topic}, and must be very specific to that topic.
         """
     ]
     return conclusion_prompt

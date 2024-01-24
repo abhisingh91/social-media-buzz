@@ -50,17 +50,13 @@ def get_chatgpt_response(prompt, tweet_texts):
 def get_main_prompt(topic):
     main_prompt = [
         f"""
-        You are an expert in guessing the the theme of a tweet text in at most 5 words. 
+        You are an expert in guessing the theme of a tweet text in at most 5 words. 
         For the given topic "{topic}", you have to analyze the tweet texts and guess the themes. It may be a tool or technology or anything that mostly corresponds to the given topic. 
         For a given input of list of tweet texts, your output should be a python list, and make sure the elements in the list is the same as the input.
-        Leave the theme blank for the elements whose text appears to be an ad/spam, is very unclear, or doesn't seem to be much related to the topic.
+        For the elements whose text appears to be an ad/spam, is very unclear, or doesn't seem to be much related to the topic, then keep empty string ("") at those positions in the output list.
         Here is an example for the topic "Artificial Intelligence":
         ["Using The Power Of #Blockchain To Combat #Deepfake Videos  #ArtificialIntelligence #AI #Deepfakes https://liwaiwai.com/2019/11/27/using-the-power-of-blockchain-to-combat-deepfake-videos/ via @liwaiwaicom", "I am good at statistics. Let me handle your assignments, homework and online classes.   DM or text +1(857)399-2684   #College #Dolph #RHOA #TaylorSwift #iTunes #canvas #cengage #blackboard #Rstudio #MicrosoftExcel #pythonprogramming #dataanalysis"]
         Response: ["Blockchain combat Deepfake Videos", ""]
-
-        Note:
-        - The topic itself should not be used in response
-        - You don't need to provide the explanation
         """
     ]
     return main_prompt
