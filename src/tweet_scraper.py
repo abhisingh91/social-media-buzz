@@ -66,7 +66,8 @@ class TweetScraper:
             DataFrame
         """
         used_instances, max_scrape_count = set(), 0
-        while len(used_instances) < len(self.scraper.working_instances):
+        attempt, max_attempts = 0, 3
+        while attempt < max_attempts:
             instance = random.choice([i for i in self.scraper.working_instances if i not in used_instances]) 
             tweets_temp = self.scraper.get_tweets(topic, mode=mode, number=number, 
                                              instance=instance, **kwargs)
@@ -74,7 +75,8 @@ class TweetScraper:
                 max_scrape_count = len(tweets_temp)
                 tweets = tweets_temp
             used_instances.add(instance)
-            if len(tweets['tweets']) > 0.5*self.num_tweets: break
+            attempt += 1
+            if len(tweets['tweets']) >= 50: break
 
         tweet_list = []
         for tweet in tweets['tweets']:
