@@ -57,7 +57,7 @@ def main():
     step(4, "Started data cleaning")
     data_clean()
     step_complete()
-    terminate_python_processes()
+    # terminate_python_processes()
 
 if __name__ == "__main__":
     main()
