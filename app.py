@@ -33,12 +33,12 @@ def get_conclusion_prompt(topic):
     conclusion_prompt = [
         f"""
         From a list of themes that belongs to the topic "{topic}", you have to identify the five most common themes with numbering from 1-5, where 1 represent the most common and so on.
-        The output should be in the format:
-        Number. [theme in bold text]: Its specific verbose info 
+        Output should be in this format: Number. [theme in bold text]: Its specific info with all the entities that are involved in that theme, like "Physical Objects", "Organizations", "Individuals", "Places", "Events", or "Natural Phenomena".
+        Example output for the topic "SpaceExploration":
+        1. Lunar Exploration: Missions to the Moon, like Artemis Accords, Japanese SLIM lander, and ISRO-JAXA Collaboration.
         Note:
-        - Keep each theme concise and verbose at the same time without exceeding 10-word limit.
+        - Keep each theme concise and verbose with **10-15 words** limit.
         - It doesn't need to be exactly any element from the list, but it should be highly correlated.
-        - It should not be the superset topic only, e.g {topic} Trends or {topic}, and must be very specific to that topic.
         """
     ]
     return conclusion_prompt
@@ -113,4 +113,4 @@ for i, button in enumerate(buttons):
                 continue
         loading.empty()
 
-        buzz_placeholder.write(f"{response}<br><br><span style='color: darkgray'>Note: <i>LLM responses may vary a bit</i></span>", unsafe_allow_html=True)
+        buzz_placeholder.write(f"{response}<br><span style='color: darkgray'>Note: <i>LLM responses may vary a bit. Try at least 3 responses.</i></p>", unsafe_allow_html=True)
