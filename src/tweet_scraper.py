@@ -68,7 +68,7 @@ class TweetScraper:
         used_instances, max_scrape_count = set(), 0
         attempt, max_attempts = 0, 5
         tweets = None
-        while attempt < max_attempts:
+        while not tweets or attempt < max_attempts:
             instance = random.choice([i for i in self.scraper.working_instances if i not in used_instances])
             tweets_temp = self.scraper.get_tweets(topic, mode=mode, number=number, 
                                             instance=instance, **kwargs)
