@@ -1,5 +1,5 @@
 # GenAI App: Find what's buzzing on Social Media
-**This app is deployed on streamlit: https://x-trends.streamlit.app/**
+**This app is deployed on streamlit: https://social-media-buzz.streamlit.app/**
 
 
 ## 📖 About
